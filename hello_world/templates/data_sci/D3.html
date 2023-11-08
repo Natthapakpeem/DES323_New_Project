@@ -1,0 +1,58 @@
+<!--D3 Section-->
+<p class="text-danger">Red: Real total applicants data plot</p>
+<p class="text-primary">Blue: Prediction total applicants data plot</p> 
+<div id="visual"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+<script src="https://cdn.jsdelivr.net/npm/@observablehq/plot@0.6"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+
+<button onclick="refresh_visual()">Refresh Visualize</button> 
+<script>
+    async function refresh_visual() {
+        let w11_api = await axios.get("https://studious-giggle-459v7xrjjgw2qq7p-8000.app.github.dev/example_linear_regression")
+            .then(function(response) {
+            
+                return response.data;
+            });
+        let real_datas = [];
+        let predicts = [];
+        w11_api['total_Weight_product_value'].forEach((data, index) => {
+            let real_obj = {
+                "total_Weight_product_value": data,
+                "total_Product_visibility_value": w11_api['total_Product_visibility_value'][index]
+            }
+                let pred_obj = {
+                    "total_Weight_product_value": data,
+                    "total_Product_visibility_value": w11_api['predict_applicants'][index]
+            }
+            real_datas.push(real_obj);
+            predicts.push(pred_obj);
+    
+        });
+        const plot = Plot.plot({
+            mark: [
+                Plot.dotY(real_datas, {x: "total_Weight_product_value", y: "total_Product_visibility_value", tip: "x", stroke: "red"}),
+                Plot.dotY(predicts, {x: "total_Weight_product_value", y: "predict_applicants", tip: "x", stroke: "blue"}),
+            ]
+        })
+        const div = document.getElementById('visual');
+        div.append(plot);
+    }
+    refresh_visual();
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

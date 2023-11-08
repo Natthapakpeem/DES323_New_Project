@@ -1,0 +1,30 @@
+<div>
+    <h1>{{ item_id }} item</h1>
+    <form action="" method="post">
+        {% csrf_token %}
+        <div>
+            <label for="Product_type_name">Product type name</label>
+            <input value="{{form_data.Product_type_name}}" type="text" name="Product_type_name">
+        </div>
+        <div>
+            <label for="Fat_content_value">Fat content value</label>
+            <input value="{{form_data.Fat_content_value}}" type="text" name="Fat_content_value">
+        </div>
+        <div>
+            <label for="Product_id_value">Product id value</label>
+            <input value="{{form_data.Product_id_value}}" type="text" name="Product_id_value">
+        </div>
+        <div>
+            <label for="Product_visibility_value">Product visibility value</label>
+            <input value="{{form_data.Product_visibility_value}}" type="text" name="Product_visibility_value">
+        </div>
+        <div>
+            <label for="Weight_product_value">Weight product value</label>
+            <input value="{{form_data.Weight_product_value}}" type="text" name="Weight_product_value">
+        </div>
+        <div>
+            <input type="submit">
+            <input type="reset">
+        </div>
+    </form>
+</div>

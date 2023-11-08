@@ -1,0 +1,28 @@
+<div class="container">
+    <h1>Showing {{ filter_type }} </h1>
+    <table class="table table-striped table-hover">
+        <tr>
+            <th>ID</th>
+            <th>Product_type_name</th>
+            <th>Fat_content_value</th>
+            <th>Product_id_value</th>
+            <th>Product_visibility_value</th>
+            <th>Weight_product_value</th>
+            <th>Actions</th>
+        </tr>
+        {% for row in datasets %}
+            <tr>
+                <td>{{ row.id }}</td>
+                <td>{{ row.Product_type_name}}</td>
+                <td>{{ row.Fat_content_value}}</td>
+                <td>{{ row.Product_id_value}}</td>
+                <td>{{ row.Product_visibility_value}}</td>
+                <td>{{ row.Weight_product_value}}</td>
+                <td>
+                    <a href="/data_sci/form/edit/{{ row.id }}">Edit</a>
+                    <a href="/data_sci/form/delete/{{ row.id }}">Delete</a>
+                </td>
+         </tr>
+        {% endfor %}
+    </table>
+</div>
